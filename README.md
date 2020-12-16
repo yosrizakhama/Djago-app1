@@ -1,4 +1,4 @@
-# Djago-app1
+# Django-app1
 My first application with Django, I'm just beginner in Django and I will perform my level quickly
 # End points :
 
