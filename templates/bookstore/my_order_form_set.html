@@ -1,0 +1,19 @@
+{% extends 'bookstore\main.html' %}
+{% load static %}
+
+{% block monbloc %}
+<h1> CREATE </h1>
+<div class='container form-group'>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for item in formset %}
+        {{ item }}<br />
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+{% endblock %}

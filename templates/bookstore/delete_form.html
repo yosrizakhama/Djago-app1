@@ -1,0 +1,16 @@
+{% extends 'bookstore\main.html' %}
+{% load static %}
+
+{% block monbloc %}
+<h1> CREATE </h1>
+<div class='container form-group'>
+    <h3>Are you sure ?</h3>
+    <form action="{% url 'delete' order.id %}" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'home' %}">Cancel</a>
+        <button type="submit" class="btn btn-primary">DELETE</button>
+    </form>
+
+</div>
+
+{% endblock %}

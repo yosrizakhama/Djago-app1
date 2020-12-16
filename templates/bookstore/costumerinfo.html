@@ -1,0 +1,60 @@
+{% extends 'bookstore\main.html' %}
+
+{% block monbloc %}
+<h1 style="text-align:center;background:#777;color:white">Costumers</h1>
+<a class="pl-5" href="{% url 'createinline' costumer.id %} "> Add Orders  <i class="fas fa-plus-square"></i></a>
+<div class="container bg-info mb-5 ">
+    <div class="row align-items-start ">
+        <div class="col">
+            First Name : {{costumer.first_name}}
+        </div>
+        <div class="col">
+            Last Name : {{costumer.last_name}}
+        </div>
+        <div class="col">
+            Email : {{costumer.email}}
+        </div>
+        <div class="col">
+            Age : {{costumer.age}}
+        </div>
+        <div class="col">
+            Nb_Order : {{nb_orders}}
+        </div>
+    </div>
+</div>
+    
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date Created</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for el in order %}
+
+                
+                <tr>
+                    <th scope="row">{{el.id}}</th>
+                    <td>{{el.date_created}}</td>
+                    <td>{{el.book.name}}</td>
+                    <td>{{el.book.price}}</td>
+                    <td>{{el.status}}</td>
+                    <td>
+                        <a href="{% url 'update' el.id %}"><i class="fas fa-edit"></i></a>
+                        <a class="text-danger" href="{% url 'delete' el.id %}"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'bookstore\main.html' %}
+
+{% block monbloc %}
+    <h1 class="p-5" style="text-align:center;background:#777;color:white">Dashboard</h1>
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-sm">
+                Total orders : <span class="badge badge-primary">{{count.t_orders}}</span>
+            </div>
+            <div class="col-sm">
+                Pending orders : <span class="badge badge-secondary">{{count.p_orders}}</span>
+            </div>
+            <div class="col-sm">
+                Delevered orders : <span class="badge badge-success">{{count.d_orders}}</span>
+            </div>
+            <div class="col-sm">
+                In-progress orders : <span class="badge badge-info">{{count.in_orders}}</span>
+            </div>
+            <div class="col-sm">
+                Out of  orders : <span class="badge badge-danger">{{count.out_orders}}</span>
+            </div>
+        </div>
+    </div>
+    <div >
+        <div class="row">
+            <div class="card col-7">
+                <div class="card-body">
+                    <h5 class="card-title">Costumers</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><a  class="btn btn-success" href="{% url 'create' %}">create </a></h6>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">LAST_NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">CREATED AT</th>
+                                <th scope="col">AGE</th>
+                                <th scope="col">SHOW</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for item in customers %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.first_name}}</td>
+                                <td>{{item.last_name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.date_created}}</td>
+                                <td>{{item.age}}</td>
+                                <td><a href="{% url 'costumer' item.id %}"><i class="fas fa-eye"></a></i></td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="card col p-5" >
+                <div class="card-body">
+                    <h5 class="card-title">Orders</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><a class="btn btn-success" href="{% url 'create' %}">create </a></h6>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">CREATED_AT</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">TAG</th>
+                                <th scope="col">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for item in orders %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.date_created}}</td>
+                                <td>{{item.status}}</td>
+                                <td>{{item.tag}}</td>
+                                <td>
+                                    <a href="{% url 'update' item.id %}"><i class="fas fa-edit"></i></a>
+                                    <a class="text-danger"href="{% url 'delete' item.id %}"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}
